@@ -4,12 +4,13 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node trades.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ccxt": "^1.31.11"
+    "ccxt": "^1.31.12",
+    "dotenv": "^8.2.0"
   }
 }
