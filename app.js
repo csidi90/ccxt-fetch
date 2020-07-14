@@ -20,21 +20,28 @@ function init() {
 }
 
 async function loadTrades() {
-  let exchange = new exchanges[0]();
-  let markets = await exchange.loadMarkets();
+  for (let i = 0; i < exchanges.length; i++) {
+    try {
+      let exchange = new exchanges[i]();
+      exchange.rateLimit = true;
+      let markets = await exchange.loadMarkets();
 
-  Object.keys(markets).forEach(async (key) => {
-    let trades = await exchange.fetchTrades(key);
-    let output = {
-      exchange: exchange.id,
-      symbol: key,
-      trades: trades,
-    };
-    let fileName = exchange.id + "-" + markets[key].id + "-trades.json";
-    let data = JSON.stringify(output, null, 4);
+      Object.keys(markets).forEach(async (key) => {
+        let trades = await exchange.fetchTrades(key);
+        let output = {
+          exchange: exchange.id,
+          symbol: key,
+          trades: trades,
+        };
+        let fileName = exchange.id + "-" + markets[key].id + "-trades.json";
+        let data = JSON.stringify(output, null, 4);
 
-    fs.writeFileSync("exports/" + fileName, data);
-  });
+        fs.writeFileSync("exports/" + fileName, data);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }
 
 init();
