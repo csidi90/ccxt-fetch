@@ -25,7 +25,7 @@ function initExchanges() {
 
 
 
-//fetching and exporting trades to json files /exports
+//fetching and exporting trades to json files /exports .
 async function loadTrades() {
   for (let i = 0; i < exchanges.length; i++) {
     try {
