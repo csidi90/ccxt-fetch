@@ -1,3 +1,4 @@
+const fs = require("fs");
 const ccxt = require("ccxt");
 const exchangeClasses = [];
 const exchanges = [];
@@ -24,7 +25,15 @@ async function loadTrades() {
 
   Object.keys(markets).forEach(async (key) => {
     let trades = await exchange.fetchTrades(key);
-    console.log(trades);
+    let output = {
+      exchange: exchange.id,
+      symbol: key,
+      trades: trades,
+    };
+    let fileName = exchange.id + "-" + markets[key].id + "-trades.json";
+    let data = JSON.stringify(output, null, 4);
+
+    fs.writeFileSync("exports/" + fileName, data);
   });
 }
 
