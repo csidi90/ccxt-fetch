@@ -4,13 +4,15 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node trades.js"
+    "tickers": "node tickers.js",
+    "trades": "node trades.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "ccxt": "^1.31.12",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "lodash": "^4.17.19"
   }
 }
