@@ -44,11 +44,13 @@ async function loadTickers() {
                         exchange: exchange.id,
                         temp
                       };
-
-                    let fileName = exchange.id + "-" + tickers[ticker].info.symbol + "-ticker.json";
+                    
+                    let str =tickers[ticker].symbol;                   
+                    let symbolName = str.replace(/[\/\\]/g,'');                 //some tickers are formated differently so I extract all the special chars to avoid errors on the file system
+                    let fileName = exchange.id + "-" + symbolName + "-ticker.json";
                     let data = JSON.stringify(output, null, 4);
     
-                    fs.writeFileSync("exports/tickers/" + fileName, data);
+                    //fs.writeFileSync("exports/tickers/" + fileName, data);
                 })
                 
              
