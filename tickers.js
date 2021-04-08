@@ -1,7 +1,7 @@
 "use strict";
 
 //script for fetchign and exportin ticker stats
-
+//test comment
 const fs = require("fs");
 const dotenv = require("dotenv").config();
 const ccxt = require("ccxt");
